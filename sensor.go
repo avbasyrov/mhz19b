@@ -2,8 +2,9 @@ package mhz19b
 
 import (
 	"errors"
-	"github.com/tarm/serial"
 	"time"
+
+	"github.com/tarm/serial"
 )
 
 const messageLength = 9
