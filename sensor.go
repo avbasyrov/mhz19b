@@ -49,11 +49,18 @@ func (s *Sensor) Connect(set2kDetectionRange, disableABC bool) error {
 			break
 		}
 
-		err1 := s.Set2kDetectionRange()
-		err2 := s.DisableABC()
+		if set2kDetectionRange {
+			err := s.Set2kDetectionRange()
+			if err != nil {
+				return errors.Join(err, errors.New("set2kDetectionRange"))
+			}
+		}
 
-		if err1 != nil || err2 != nil {
-			return errors.Join(err1, err2)
+		if disableABC {
+			err := s.DisableABC()
+			if err != nil {
+				return errors.Join(err, errors.New("disableABC"))
+			}
 		}
 	}
 
